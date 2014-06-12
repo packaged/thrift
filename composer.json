@@ -1,7 +1,7 @@
 {
   "name":              "packaged/thrift",
   "description":       "Apache Thrift",
-  "version":           "0.9.0",
+  "version":           "0.9.1",
   "keywords":          ["thrift", "apache"],
   "homepage":          "http://thrift.apache.org/",
   "minimum-stability": "stable",
