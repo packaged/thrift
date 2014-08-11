@@ -17,34 +17,35 @@
  * specific language governing permissions and limitations
  * under the License.
  *
- * @package thrift.protocol
- * @author: rmarin (marin.radu@facebook.com)
+ * @package thrift
  */
 
-namespace Thrift\Exception;
-
-use Thrift\Exception\TException;
+namespace Thrift\Type;
 
 /**
- * Protocol module. Contains all the types and definitions needed to implement
- * a protocol encoder/decoder.
- *
- * @package thrift.protocol
+ * Base class for constant Management
  */
+abstract class TConstant
+{
+    /**
+     * Don't instanciate this class
+     */
+    protected function __construct() {}
 
-/**
- * Protocol exceptions
- */
-class TProtocolException extends TException {
-  const UNKNOWN = 0;
-  const INVALID_DATA = 1;
-  const NEGATIVE_SIZE = 2;
-  const SIZE_LIMIT = 3;
-  const BAD_VERSION = 4;
-  const NOT_IMPLEMENTED = 5;
-  const DEPTH_LIMIT = 6;
+    /**
+     * Get a constant value
+     * @param string $constant
+     * @return mixed
+     */
+    public static function get($constant)
+    {
+        if(is_null(static::$$constant))
+        {
+            static::$$constant = call_user_func(
+                    sprintf('static::init_%s', $constant)
+                );
+        }
 
-  function __construct($message=null, $code=0) {
-    parent::__construct($message, $code);
-  }
+        return static::$$constant;
+    }
 }
