@@ -17,24 +17,17 @@
  * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations
  * under the License.
- *
  */
 
-namespace Thrift\StringFunc;
+namespace Thrift\Factory;
 
-interface TStringFunc
+use Thrift\Transport\TTransport;
+
+interface TTransportFactoryInterface
 {
     /**
-     * @param string $str
-     * @param int $start
-     * @param int|null $length
-     * @return false|string
+     * @param TTransport $transport
+     * @return TTransport
      */
-    public function substr($str, $start, $length = null);
-
-    /**
-     * @param string $str
-     * @return int
-     */
-    public function strlen($str);
+    public function getTransport(TTransport $transport);
 }
